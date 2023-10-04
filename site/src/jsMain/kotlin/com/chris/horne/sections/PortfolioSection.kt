@@ -67,7 +67,7 @@ fun PortfolioContent() {
 fun PortfolioCards(breakpoint: Breakpoint) {
     Row(
         modifier = Modifier
-            .id("scrollableContainer")
+            .id("scrollableContainer") // needed to animate scroll function
             .fillMaxWidth()
             .margin(bottom = 25.px, top = 25.px)
             .maxWidth( // this will restrain the amount of portfolio objects shown
