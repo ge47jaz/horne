@@ -43,12 +43,17 @@ val ServiceCardStyle by ComponentStyle {
     cssRule(" > #iconBox") { // target child elements of base parent that contains id: iconBox
         Modifier
             .backgroundColor(Colors.Transparent)
-            .transition(CSSTransition(property = "background", duration = 200.ms))
+            .transition(
+                CSSTransition(property = "background", duration = 200.ms),
+                CSSTransition(property = "scale", duration = 250.ms),
+                CSSTransition(property = "box-shadow", duration = 250.ms),
+            )
     }
 
     cssRule(":hover > #iconBox") { // on hover change background color
         Modifier
             .backgroundColor(Colors.White)
+            .scale(1.1, 1.1)
             .boxShadow(
                 offsetX = 4.px,
                 offsetY = 4.px,

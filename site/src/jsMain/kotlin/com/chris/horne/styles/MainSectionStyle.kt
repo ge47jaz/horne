@@ -3,6 +3,7 @@ package com.chris.horne.styles
 import com.chris.horne.models.Theme
 import com.varabyte.kobweb.compose.css.CSSTransition
 import com.varabyte.kobweb.compose.ui.Modifier
+import com.varabyte.kobweb.compose.ui.graphics.Colors
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.compose.ui.styleModifier
 import com.varabyte.kobweb.silk.components.style.ComponentStyle
@@ -50,13 +51,23 @@ val SocialLinkStyle by ComponentStyle {
     base {
         Modifier
             .color(Theme.Gray.rgb)
-            .transition(CSSTransition(property = "color", duration = 200.ms))
+            .transition(
+                CSSTransition(property = "color", duration = 100.ms),
+                CSSTransition(property = "box-shadow", duration = 10.ms),
+                CSSTransition(property = "scale", duration = 100.ms)
+            )
 
     }
     hover {
         Modifier
             .color(Theme.Primary.rgb)
-            .scale(1.5f) // Increase size on hover
+            .scale(2.0f) // Increase size on hover
+            .boxShadow(
+                offsetX = 4.px,
+                offsetY = 4.px,
+                blurRadius = 10.px,
+                color = Colors.Black // Shadow color
+            )
     }
 }
 
