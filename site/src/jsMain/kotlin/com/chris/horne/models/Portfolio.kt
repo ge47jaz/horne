@@ -1,6 +1,5 @@
 package com.chris.horne.models
 
-import androidx.compose.runtime.internal.StabilityInferred
 import com.chris.horne.util.Res
 
 enum class Portfolio(
@@ -9,28 +8,28 @@ enum class Portfolio(
     val description: String
 ) {
     One(
-        image = Res.portfolio1,
-        title = "Kudoe",
+        image = Res.portfolio,
+        title = "Coming Soon",
         description = "Web Design"
     ),
     Two(
-        image = Res.portfolio2,
-        title = "Landing Page for NFT",
+        image = Res.portfolio,
+        title = "Coming Soon",
         description = "Frontend"
     ),
     Three(
-        image = Res.portfolio3,
-        title = "NFT Application",
+        image = Res.portfolio,
+        title = "Coming Soon",
         description = "Frontend/Backend"
     ),
     Four(
-        image = Res.portfolio4,
-        title = "Game Statistics Application",
+        image = Res.portfolio,
+        title = "Coming Soon",
         description = "Web/Mobile App"
     ),
     Five(
-        image = Res.portfolio5,
-        title = "Platform for Online Courses",
+        image = Res.portfolio,
+        title = "Coming Soon",
         description = "Web/Mobile App"
     )
 }
