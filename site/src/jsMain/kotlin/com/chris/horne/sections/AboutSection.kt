@@ -91,7 +91,7 @@ fun AboutImage() {
 fun AboutMe() {
     val scope = rememberCoroutineScope()
     var viewportEntered by remember { mutableStateOf(false) }
-    var animatedPercentage = remember { mutableStateListOf(0, 0, 0, 0, 0) }
+    val animatedPercentage = remember { mutableStateListOf(0, 0, 0, 0, 0) }
 
     ObserveViewportEntered(
         sectionId = Section.About.id,

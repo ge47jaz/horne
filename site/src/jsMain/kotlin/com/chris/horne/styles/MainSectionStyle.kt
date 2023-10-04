@@ -56,7 +56,7 @@ val SocialLinkStyle by ComponentStyle {
     hover {
         Modifier
             .color(Theme.Primary.rgb)
-            .scale(1.4f) // Increase size on hover
+            .scale(1.5f) // Increase size on hover
     }
 }
 
