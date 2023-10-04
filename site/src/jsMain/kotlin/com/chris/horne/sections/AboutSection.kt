@@ -115,7 +115,7 @@ fun AboutMe() {
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center
     ) {
-        SectionTitle(section = Section.About)
+        SectionTitle(section = Section.About, alignment = Alignment.Start)
         P( // paragraph in html
             attrs = AboutTextStyle.toModifier()
                 .margin(topBottom = 25.px)

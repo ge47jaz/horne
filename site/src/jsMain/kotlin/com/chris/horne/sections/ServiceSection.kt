@@ -17,7 +17,6 @@ import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
-import kotlin.text.Typography.section
 
 @Composable
 fun ServiceSection() {
@@ -49,7 +48,7 @@ fun ServiceContent() {
             section = Section.Service,
             alignment = Alignment.CenterHorizontally
         )
-        SimpleGrid(numColumns = numColumns(base = 1, sm = 2, md = 3)){
+        SimpleGrid(numColumns = numColumns(base = 1, sm = 2, md = 3)) {
             Service.values().forEach { service ->
                 ServiceCard(service = service)
             }

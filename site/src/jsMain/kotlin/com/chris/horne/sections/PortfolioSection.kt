@@ -49,13 +49,14 @@ fun PortfolioContent() {
                 if (breakpoint >= Breakpoint.MD) 100.percent
                 else 90.percent
             ),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.Start
     ) {
         SectionTitle(
             modifier = Modifier
                 .fillMaxWidth()
                 .margin(bottom = 25.px),
-            section = Section.Portfolio
+            section = Section.Portfolio,
+            alignment = Alignment.Start
         )
         PortfolioCards(breakpoint = breakpoint)
         PortfolioNavigation()
@@ -68,8 +69,8 @@ fun PortfolioCards(breakpoint: Breakpoint) {
         modifier = Modifier
             .id("scrollableContainer")
             .fillMaxWidth()
-            .margin(bottom = 25.px)
-            .maxWidth(
+            .margin(bottom = 25.px, top = 25.px)
+            .maxWidth( // this will restrain the amount of portfolio objects shown
                 if (breakpoint > Breakpoint.MD) 950.px
                 else if (breakpoint > Breakpoint.SM) 625.px
                 else 300.px

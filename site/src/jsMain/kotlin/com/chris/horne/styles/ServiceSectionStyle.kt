@@ -47,7 +47,14 @@ val ServiceCardStyle by ComponentStyle {
     }
 
     cssRule(":hover > #iconBox") { // on hover change background color
-        Modifier.backgroundColor(Colors.White)
+        Modifier
+            .backgroundColor(Colors.White)
+            .boxShadow(
+                offsetX = 4.px,
+                offsetY = 4.px,
+                blurRadius = 8.px,
+                color = Colors.Black // Shadow color
+            )
     }
 
     // for text animation

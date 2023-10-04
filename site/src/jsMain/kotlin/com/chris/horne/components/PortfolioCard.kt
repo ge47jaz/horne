@@ -54,7 +54,8 @@ fun PortfolioCard(
                 Image(
                     modifier = Modifier
                         .size(300.px)
-                        .objectFit(ObjectFit.Cover),
+                        .objectFit(ObjectFit.Cover)
+                        .borderRadius(15.px),
                     src = portfolio.image,
                     desc = "Portfolio Image"
                 )
@@ -62,6 +63,7 @@ fun PortfolioCard(
                     modifier = Modifier
                         .id("greenOverlay")
                         .fillMaxHeight()
+                        .borderRadius(15.px)
                         .backgroundColor(argb(a = 0.5f, r = 0, g = 167, b = 142)),
                     contentAlignment = Alignment.Center
                 ) {
