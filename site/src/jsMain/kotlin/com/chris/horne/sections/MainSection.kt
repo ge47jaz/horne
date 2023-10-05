@@ -34,7 +34,7 @@ import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Text
 
 @Composable
-fun MainSection() {
+fun MainSection(onMenuClicked: () -> Unit) {
     // all components stacked on each other
     Box(
         modifier = Modifier
@@ -43,7 +43,7 @@ fun MainSection() {
         contentAlignment = Alignment.TopCenter
     ) {
         MainBackground()
-        MainContent()
+        MainContent(onMenuClicked = onMenuClicked)
     }
 }
 
@@ -59,14 +59,14 @@ fun MainBackground() {
 }
 
 @Composable
-fun MainContent() {
+fun MainContent(onMenuClicked: () -> Unit) {
     val breakpoint = rememberBreakpoint() // breakpoint to make MainSection responsive
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Header()
+        Header(onMenuClicked = onMenuClicked)
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Bottom,

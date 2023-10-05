@@ -1,9 +1,11 @@
 package com.chris.horne.components
 
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import com.chris.horne.models.Section
 import com.chris.horne.models.Theme
 import com.chris.horne.util.Constants.FONT_FAMILY
+import com.chris.horne.util.ObserveViewportEntered
+import com.varabyte.kobweb.compose.css.CSSTransition
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.TextAlign
 import com.varabyte.kobweb.compose.foundation.layout.Box
@@ -12,6 +14,9 @@ import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.compose.ui.toAttrs
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import org.jetbrains.compose.web.css.ms
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Text
@@ -22,6 +27,23 @@ fun SectionTitle(
     section: Section,
     alignment: Alignment.Horizontal = Alignment.Start // by default, alignment starts on the right
 ) {
+    // animate titles
+    val scope = rememberCoroutineScope()
+    var titleMargin by remember { mutableStateOf(50.px) }
+    var subtitleMargin by remember { mutableStateOf(50.px) }
+
+    ObserveViewportEntered(
+        sectionId = section.id,
+        distanceFromTop = 700.0,
+        onViewportEntered = {
+            scope.launch {
+                subtitleMargin = 0.px
+                if (alignment == Alignment.Start) delay(25)
+                titleMargin = 0.px
+            }
+        }
+    )
+
     Column(
         modifier = Modifier,
         horizontalAlignment = alignment
@@ -36,11 +58,16 @@ fun SectionTitle(
                         else -> TextAlign.Start
                     }
                 )
-                .margin(topBottom = 0.px) // otherwise default margin
+                .margin(
+                    top = 0.px, // otherwise default margin
+                    bottom = 0.px,
+                    left = titleMargin
+                )
                 .fontFamily(FONT_FAMILY)
                 .fontSize(25.px)
                 .fontWeight(FontWeight.Normal)
                 .color(Theme.Primary.rgb)
+                .transition(CSSTransition(property = "margin", duration = 300.ms))
                 .toAttrs()
         ) {
             Text(section.title)
@@ -55,11 +82,17 @@ fun SectionTitle(
                         else -> TextAlign.Start
                     }
                 )
-                .margin(bottom = 10.px, top = 0.px) // to separate form line below text
+                .margin(
+                    left = if (alignment == Alignment.Start) subtitleMargin else 0.px,
+                    right = if (alignment == Alignment.CenterHorizontally) subtitleMargin else 0.px,
+                    bottom = 10.px,
+                    top = 0.px
+                )
                 .fontFamily(FONT_FAMILY)
                 .fontSize(40.px)
                 .fontWeight(FontWeight.Bold)
                 .color(Theme.Secondary.rgb)
+                .transition(CSSTransition(property = "margin", duration = 300.ms))
                 .toAttrs()
         ) {
             Text(section.subtitle)

@@ -25,7 +25,7 @@ import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 
 @Composable
-fun Header() {
+fun Header(onMenuClicked: () -> Unit) {
     val breakpoint = rememberBreakpoint() // make header responsive according to screen size
     Row(
         modifier = Modifier
@@ -36,7 +36,10 @@ fun Header() {
         horizontalArrangement = Arrangement.SpaceBetween, // space between right and left side
         verticalAlignment = Alignment.CenterVertically
     ) {
-        LeftSide(breakpoint = breakpoint)
+        LeftSide(
+            breakpoint = breakpoint,
+            onMenuClicked = onMenuClicked
+        )
 
         // put menu in header only if screen is larger than MD breakpoint (simple tablet)
         if (breakpoint > Breakpoint.MD) {
@@ -47,12 +50,19 @@ fun Header() {
 
 // left sid - logo
 @Composable
-fun LeftSide(breakpoint: Breakpoint) { // pass breakpoint to show dropdown for mobile
+fun LeftSide(
+    breakpoint: Breakpoint,
+    onMenuClicked: () -> Unit
+) { // pass breakpoint to show dropdown for mobile
     Row(verticalAlignment = Alignment.CenterVertically) {
         if (breakpoint <= Breakpoint.MD) {
             // show dropdown menu for mobile
             FaBars(
-                modifier = Modifier.margin(right = 15.px),
+                modifier = Modifier
+                    .margin(right = 15.px)
+                    .onClick {
+                        onMenuClicked()
+                    },
                 size = IconSize.XL
             ) // font awesome icon hamburger menu
         }
